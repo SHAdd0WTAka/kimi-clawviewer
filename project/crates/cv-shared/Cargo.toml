@@ -1,0 +1,19 @@
+[package]
+name = "cv-shared"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+tokio = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+prost = { workspace = true }
+bytes = { workspace = true }
+chrono = { workspace = true }
+rand = { workspace = true }
+zeroize = { workspace = true }
+tracing = { workspace = true }
+
+[build-dependencies]
+prost-build = "0.13"
