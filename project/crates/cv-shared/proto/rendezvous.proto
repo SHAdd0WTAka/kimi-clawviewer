@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package clawviewer.rendezvous;
+
+message RendezvousMessage {
+  oneof union {
+    RegisterPeer register_peer = 1;
+    RegisterPk register_pk = 2;
+    PunchHoleRequest punch_hole_request = 3;
+    PunchHole punch_hole = 4;
+    PunchHoleSent punch_hole_sent = 5;
+    PunchHoleResponse punch_hole_response = 6;
+    RequestRelay request_relay = 7;
+    RelayResponse relay_response = 8;
+    KeepAlive keep_alive = 9;
+  }
+}
+
+message RegisterPeer {
+  string peer_id = 1;
+  bytes public_key = 2;
+  string password = 3;
+}
+
+message RegisterPk {
+  string peer_id = 1;
+  bytes public_key = 2;
+}
+
+message PunchHoleRequest {
+  string peer_id = 1;
+  string target_peer = 2;
+  int32 nat_type = 3;
+}
+
+message PunchHole {
+  string peer_id = 1;
+  bytes ip = 2;
+  int32 port = 3;
+  int32 nat_type = 4;
+}
+
+message PunchHoleSent {
+  string peer_id = 1;
+  string target_peer = 2;
+}
+
+message PunchHoleResponse {
+  string peer_id = 1;
+  bytes ip = 2;
+  int32 port = 3;
+  int32 nat_type = 4;
+}
+
+message RequestRelay {
+  string peer_id = 1;
+  string target_peer = 2;
+}
+
+message RelayResponse {
+  string relay_id = 1;
+  string peer_id = 2;
+}
+
+message KeepAlive {}
