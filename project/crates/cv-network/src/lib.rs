@@ -33,9 +33,10 @@
 //! # }
 //! ```
 
+pub mod peer;
 pub mod signaling;
 pub mod webrtc;
-pub mod peer;
+pub mod webrtc_real;
 
 // Re-export commonly used types for convenience.
 pub use signaling::{SignalingMessage, SignalingServer};
