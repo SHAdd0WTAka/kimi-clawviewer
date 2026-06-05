@@ -38,7 +38,7 @@ pub mod webrtc;
 pub mod peer;
 
 // Re-export commonly used types for convenience.
-pub use signaling::{SignalingClient, SignalingMessage};
+pub use signaling::{SignalingMessage, SignalingServer};
 pub use webrtc::{ConnectionState, P2PConnection, ICECandidate, SDPDescription};
 pub use peer::PeerManager;
 

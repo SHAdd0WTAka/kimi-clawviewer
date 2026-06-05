@@ -1,3 +1,4 @@
+// ClawViewer Desktop Entry Point
 fn main() {
-    println!("ClawViewer Tauri App");
+    clawviewer_lib::run();
 }

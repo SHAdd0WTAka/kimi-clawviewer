@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { invoke } from '@tauri-apps/api/core';
+import { invoke } from '../tauriApi';
 import type { AIMode, ConnectionState } from '../types';
 
 interface ControlBarProps {

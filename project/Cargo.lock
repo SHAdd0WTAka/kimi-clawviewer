@@ -351,6 +351,7 @@ dependencies = [
  "cv-network",
  "cv-security",
  "cv-shared",
+ "rand 0.8.6",
  "serde",
  "serde_json",
  "tauri",
@@ -542,6 +543,7 @@ name = "cv-capture"
 version = "0.1.0"
 dependencies = [
  "cv-shared",
+ "libc",
  "thiserror 1.0.69",
  "tokio",
  "tracing",
@@ -553,6 +555,7 @@ name = "cv-input"
 version = "0.1.0"
 dependencies = [
  "cv-shared",
+ "libc",
  "thiserror 1.0.69",
  "tokio",
  "tracing",

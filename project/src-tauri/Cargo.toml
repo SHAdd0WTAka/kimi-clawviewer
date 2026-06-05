@@ -29,6 +29,7 @@ cv-capture = { path = "../crates/cv-capture" }
 cv-input = { path = "../crates/cv-input" }
 cv-network = { path = "../crates/cv-network" }
 cv-mcp = { path = "../crates/cv-mcp" }
+rand.workspace = true
 
 [build-dependencies]
-tauri-build = "2.2"
+tauri-build = { version = "2.2", features = [] }

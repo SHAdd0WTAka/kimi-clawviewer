@@ -34,6 +34,7 @@
 
 pub mod dxgi;
 pub mod frame;
+pub mod linux_drm;
 
 // Convenience re-exports so `use cv_capture::{Frame, DxgiCapturer}` works.
 pub use dxgi::{capture_stream, DxgiCapturer, Rect};

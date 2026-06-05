@@ -1,3 +1,1 @@
-fn main() {
-    // Tauri build
-}
+fn main() {}

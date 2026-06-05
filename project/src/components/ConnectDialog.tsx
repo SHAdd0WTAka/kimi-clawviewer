@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { invoke } from '@tauri-apps/api/core';
+import { invoke } from '../tauriApi';
 import type { ConnectionState } from '../types';
 
 interface ConnectDialogProps {

@@ -1,6 +1,5 @@
 import React, { useRef, useEffect, useCallback, useState } from 'react';
-import { invoke } from '@tauri-apps/api/core';
-import { listen } from '@tauri-apps/api/event';
+import { invoke, listen } from '../tauriApi';
 import type { AIMode } from '../types';
 
 interface ScreenViewerProps {
@@ -26,8 +25,8 @@ export function ScreenViewer({ aiMode, peerId }: ScreenViewerProps) {
       data: number[];
       width: number;
       height: number;
-    }>('video-frame', (event) => {
-      const { data, width, height } = event.payload;
+    }>('video-frame', (payload) => {
+      const { data, width, height } = payload;
       const canvas = canvasRef.current;
       if (!canvas) return;
 
@@ -54,8 +53,8 @@ export function ScreenViewer({ aiMode, peerId }: ScreenViewerProps) {
 
   // Listen for AI ghost cursor position
   useEffect(() => {
-    const unlisten = listen<GhostCursorPosition>('ai-cursor-position', (event) => {
-      setGhostCursor(event.payload);
+    const unlisten = listen<GhostCursorPosition>('ai-cursor-position', (payload) => {
+      setGhostCursor(payload);
     });
 
     return () => {

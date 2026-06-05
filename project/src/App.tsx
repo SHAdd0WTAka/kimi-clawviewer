@@ -1,6 +1,5 @@
 import { useState, useCallback, useEffect } from 'react';
-import { listen } from '@tauri-apps/api/event';
-import { invoke } from '@tauri-apps/api/core';
+import { invoke, listen } from './tauriApi';
 import { ScreenViewer } from './components/ScreenViewer';
 import { ControlBar } from './components/ControlBar';
 import { ChatPanel } from './components/ChatPanel';
@@ -29,12 +28,12 @@ export default function App() {
       setAiMode('disabled');
     });
 
-    const unlistenMessage = listen<{ message: ChatMessage }>('chat-message', (event) => {
-      setMessages((prev) => [...prev, event.payload.message]);
+    const unlistenMessage = listen<{ message: ChatMessage }>('chat-message', (payload) => {
+      setMessages((prev) => [...prev, payload.message]);
     });
 
-    const unlistenAiMode = listen<{ mode: AIMode }>('ai-mode-changed', (event) => {
-      setAiMode(event.payload.mode);
+    const unlistenAiMode = listen<{ mode: AIMode }>('ai-mode-changed', (payload) => {
+      setAiMode(payload.mode);
     });
 
     return () => {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { listen } from '@tauri-apps/api/event';
+import { listen } from '../tauriApi';
 import type { AIMode } from '../types';
 
 interface AIStatusProps {
@@ -20,8 +20,8 @@ export function AIStatus({ mode }: AIStatusProps) {
   });
 
   useEffect(() => {
-    const unlisten = listen<AIActivityEvent>('ai-activity', (event) => {
-      setActivity(event.payload);
+    const unlisten = listen<AIActivityEvent>('ai-activity', (payload) => {
+      setActivity(payload);
     });
 
     return () => {

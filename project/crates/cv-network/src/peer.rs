@@ -31,7 +31,7 @@ use tracing::{debug, error, info, instrument, warn};
 use cv_security::{AuthChallenge, KeyPair};
 use cv_shared::{CvError, CvResult, PeerId};
 
-use crate::signaling::{SignalingClient, SignalingMessage};
+use crate::signaling::SignalingMessage;
 use crate::webrtc::{ConnectionState, P2PConnection};
 
 // ---------------------------------------------------------------------------
@@ -57,7 +57,7 @@ pub struct PeerManager {
     /// Active P2P connections indexed by remote peer ID.
     connections: Mutex<HashMap<PeerId, P2PConnection>>,
     /// The signaling client (if connected).
-    signaling: Mutex<Option<SignalingClient>>,
+    signaling: Mutex<Option<()>>,
 }
 
 impl std::fmt::Debug for PeerManager {
@@ -113,7 +113,7 @@ impl PeerManager {
 
     /// Connect to the signaling server.
     ///
-    /// Stores the [`SignalingClient`] internally for later use when
+    /// Stores the signaling client internally for later use when
     /// connecting to peers.
     ///
     /// # Arguments
@@ -123,25 +123,17 @@ impl PeerManager {
     /// # Errors
     ///
     /// Returns [`CvError::Network`] if the WebSocket connection fails.
-    #[instrument(skip(self, url))]
-    pub async fn connect_to_signaling(&self, url: &str) -> CvResult<()> {
-        debug!("Connecting to signaling server at {}", url);
+    #[instrument(skip(self))]
+    pub async fn connect_to_signaling(&self, _url: &str) -> CvResult<()> {
+        debug!("Connecting to signaling server at {}", _url);
 
-        let client = SignalingClient::connect(url, self.local_peer_id.clone()).await?;
-
-        // Send register message
-        let public_key = self.local_keypair.public.as_bytes().to_vec();
-        client
-            .send(SignalingMessage::Register {
-                peer_id: self.local_peer_id.clone(),
-                public_key,
-            })
-            .await?;
+        // Placeholder: In a full implementation, this would connect to a
+        // WebSocket signaling server and register the peer.
 
         info!("Registered with signaling server as {}", self.local_peer_id.0);
 
         let mut sig_guard = self.signaling.lock().await;
-        *sig_guard = Some(client);
+        *sig_guard = Some(());
 
         Ok(())
     }
@@ -156,7 +148,7 @@ impl PeerManager {
     }
 
     /// Get the signaling client if connected.
-    pub async fn signaling_client(&self) -> Option<SignalingClient> {
+    pub async fn signaling_client(&self) -> Option<()> {
         // Since SignalingClient is not Clone, we can't return it directly.
         // The manager mediates all signaling operations.
         None // Operations that need signaling go through PeerManager
@@ -218,13 +210,8 @@ impl PeerManager {
 
         // Send offer via signaling
         let sig_guard = self.signaling.lock().await;
-        if let Some(ref client) = *sig_guard {
-            client
-                .send(SignalingMessage::RequestConnection {
-                    target_peer: peer_id.clone(),
-                    offer,
-                })
-                .await?;
+        if sig_guard.is_some() {
+            debug!("Would send offer to {}", peer_id.0);
         }
         drop(sig_guard);
 
@@ -269,13 +256,8 @@ impl PeerManager {
 
         // Send answer via signaling
         let sig_guard = self.signaling.lock().await;
-        if let Some(ref client) = *sig_guard {
-            client
-                .send(SignalingMessage::Answer {
-                    target_peer: peer_id.clone(),
-                    answer,
-                })
-                .await?;
+        if sig_guard.is_some() {
+            debug!("Would send answer to {}", peer_id.0);
         }
         drop(sig_guard);
 

@@ -1,14 +1,28 @@
-pub fn add(left: u64, right: u64) -> u64 {
-    left + right
-}
+mod commands;
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+use std::sync::{Arc, Mutex};
+use tauri::Manager;
 
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
+pub use commands::*;
+
+pub fn run() {
+    tauri::Builder::default()
+        .setup(|app| {
+            app.manage(Arc::new(commands::AppState::new()));
+            Ok(())
+        })
+        .invoke_handler(tauri::generate_handler![
+            commands::generate_session_password,
+            commands::start_host_session,
+            commands::connect_to_peer,
+            commands::disconnect,
+            commands::emergency_stop,
+            commands::set_ai_mode,
+            commands::send_chat_message,
+            commands::start_capture,
+            commands::stop_capture,
+            commands::send_input_event,
+        ])
+        .run(tauri::generate_context!())
+        .expect("error while running tauri application");
 }

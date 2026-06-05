@@ -8,6 +8,7 @@ cv-shared = { path = "../cv-shared" }
 tokio = { workspace = true }
 tracing = { workspace = true }
 thiserror = { workspace = true }
+libc = "0.2.186"
 
 [target.'cfg(target_os = "windows")'.dependencies]
 windows = { version = "0.58", features = [

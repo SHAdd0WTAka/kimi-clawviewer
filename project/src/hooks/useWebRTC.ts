@@ -1,6 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
-import { invoke } from '@tauri-apps/api/core';
-import { listen, type UnlistenFn } from '@tauri-apps/api/event';
+import { invoke, listen, type UnlistenFn } from '../tauriApi';
 import type { ConnectionState } from '../types';
 
 export function useWebRTC() {
@@ -12,8 +11,8 @@ export function useWebRTC() {
     const setupListener = async () => {
       const unlisten = await listen<{ state: ConnectionState }>(
         'connection-state-changed',
-        (event) => {
-          setConnectionState(event.payload.state);
+        (payload) => {
+          setConnectionState(payload.state);
         }
       );
       unlistenRef.current = unlisten;

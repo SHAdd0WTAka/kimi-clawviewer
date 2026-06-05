@@ -8,7 +8,7 @@
 //! | Platform | Status |
 //! |----------|--------|
 //! | Windows  | Full `SendInput` implementation |
-//! | Linux    | Stub (`todo!()`) – planned via XTest / uinput |
+//! | Linux    | Real implementation via uinput/evdev |
 //! | macOS    | Stub (`todo!()`) – planned via CGEvent |
 //!
 //! ## Modules
@@ -16,6 +16,7 @@
 //! * [`types`] – Shared input event types (`MouseButton`, `InputEvent`, …).
 //! * [`queue`] – [`PriorityInputQueue`] with P0-P3 priority levels and emergency stop.
 //! * [`windows`] – [`windows::InputInjector`] using Win32 `SendInput` (Windows only).
+//! * [`linux`] – [`linux::InputInjector`] using uinput (Linux only).
 
 pub mod queue;
 pub mod types;
@@ -23,6 +24,9 @@ pub mod types;
 // Platform-specific modules
 #[cfg(target_os = "windows")]
 pub mod windows;
+
+#[cfg(target_os = "linux")]
+pub mod linux;
 
 // ---------------------------------------------------------------------------
 // Re-exports for convenience
@@ -34,7 +38,8 @@ pub use queue::PriorityInputQueue;
 /// Platform-specific input injector.
 ///
 /// * **Windows**: re-exports [`windows::InputInjector`].
-/// * **Linux** / **macOS**: re-exports the corresponding stub.
+/// * **Linux**: re-exports [`linux::InputInjector`].
+/// * **macOS**: re-exports the corresponding stub.
 #[cfg(target_os = "windows")]
 pub use windows::InputInjector as PlatformInjector;
 
@@ -45,59 +50,8 @@ pub use linux::InputInjector as PlatformInjector;
 pub use macos::InputInjector as PlatformInjector;
 
 // ---------------------------------------------------------------------------
-// Platform stubs (Linux / macOS)
+// Platform stubs (macOS only)
 // ---------------------------------------------------------------------------
-
-/// Linux stub module – panics with `todo!()` for all operations.
-#[cfg(target_os = "linux")]
-pub mod linux {
-    use cv_shared::CvResult;
-    use super::types::MouseButton;
-    use tracing::warn;
-
-    /// Linux input injector stub.
-    #[derive(Debug, Clone)]
-    pub struct InputInjector;
-
-    impl InputInjector {
-        /// Create a new stub injector.
-        pub fn new() -> Self {
-            warn!("Linux InputInjector is a stub – real implementation needs XTest/uinput");
-            Self
-        }
-
-        /// Stub: `todo!("Implement via XTest or evdev")`
-        pub fn move_mouse(&self, _x: i32, _y: i32) -> CvResult<()> {
-            todo!("Linux mouse move not yet implemented (needs XTest or evdev)")
-        }
-
-        /// Stub: `todo!("Implement via XTest")`
-        pub fn click(&self, _button: MouseButton, _down: bool) -> CvResult<()> {
-            todo!("Linux mouse click not yet implemented (needs XTest)")
-        }
-
-        /// Stub: `todo!("Implement via XTest")`
-        pub fn scroll(&self, _delta: i32) -> CvResult<()> {
-            todo!("Linux mouse scroll not yet implemented (needs XTest)")
-        }
-
-        /// Stub: `todo!("Implement via XTest")`
-        pub fn key_press(&self, _keycode: u16, _down: bool) -> CvResult<()> {
-            todo!("Linux key press not yet implemented (needs XTest)")
-        }
-
-        /// Stub: `todo!("Implement via XTest")`
-        pub fn type_text(&self, _text: &str) -> CvResult<()> {
-            todo!("Linux text typing not yet implemented (needs XTest)")
-        }
-    }
-
-    impl Default for InputInjector {
-        fn default() -> Self {
-            Self::new()
-        }
-    }
-}
 
 /// macOS stub module – panics with `todo!()` for all operations.
 #[cfg(target_os = "macos")]
@@ -161,8 +115,6 @@ mod tests {
 
     #[test]
     fn reexports_are_available() {
-        // Verify that InputEvent, MouseButton, Priority and PriorityInputQueue
-        // can be used directly from the crate root.
         let _ev = InputEvent {
             source: EventSource::Human,
             event_type: EventType::MouseClick {
@@ -180,21 +132,18 @@ mod tests {
     #[test]
     #[cfg(target_os = "windows")]
     fn platform_injector_is_windows() {
-        // On Windows PlatformInjector == windows::InputInjector
         let _: PlatformInjector = windows::InputInjector::new();
     }
 
     #[test]
     #[cfg(target_os = "linux")]
-    fn platform_injector_is_linux_stub() {
-        // On Linux it should compile as a stub.
+    fn platform_injector_is_linux() {
         let _ = linux::InputInjector::new();
     }
 
     #[test]
     #[cfg(target_os = "macos")]
     fn platform_injector_is_macos_stub() {
-        // On macOS it should compile as a stub.
         let _ = macos::InputInjector::new();
     }
 }
