@@ -1,0 +1,30 @@
+[workspace]
+members = ["crates/*", "src-tauri"]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+authors = ["ClawViewer Team"]
+license = "GPL-3.0"
+repository = "https://github.com/clawviewer/clawviewer"
+
+[workspace.dependencies]
+tokio = { version = "1.44", features = ["full"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+thiserror = "1.0"
+anyhow = "1.0"
+prost = "0.13"
+bytes = "1.7"
+tracing = "0.1"
+tracing-subscriber = "0.3"
+chrono = "0.4"
+rand = "0.8"
+zeroize = { version = "1.8", features = ["derive"] }
+ed25519-dalek = { version = "2.1", features = ["rand_core"] }
+x25519-dalek = "2.0"
+webrtc = "0.12"
+tokio-tungstenite = { version = "0.26", features = ["rustls-tls-webpki-roots"] }
+async-trait = "0.1"
+futures = "0.3"
