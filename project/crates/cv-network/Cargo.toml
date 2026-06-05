@@ -1,0 +1,19 @@
+[package]
+name = "cv-network"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+cv-shared = { path = "../cv-shared" }
+cv-security = { path = "../cv-security" }
+ed25519-dalek = { workspace = true }
+tokio = { workspace = true }
+tokio-tungstenite = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+async-trait = { workspace = true }
+futures = { workspace = true }
+tracing = { workspace = true }
+bytes = { workspace = true }
+prost = { workspace = true }
