@@ -40,23 +40,26 @@ mod tests {
     #[test]
     fn priority_ordering() {
         use cv_shared::types::Priority::*;
-        assert!(P0_Emergency < P1_Human);
-        assert!(P1_Human < P2_AI_Confirmed);
-        assert!(P2_AI_Confirmed < P3_AI_Autonomous);
+        // P0 has highest priority, so it should be "greater" in the ordering
+        // (BinaryHeap pops max first, and we want P0 first)
+        assert!(P0_Emergency > P1_Human);
+        assert!(P1_Human > P2_AI_Confirmed);
+        assert!(P2_AI_Confirmed > P3_AI_Autonomous);
     }
 
     #[test]
     fn input_event_construction() {
-        let ev = InputEvent::new(
-            EventSource::Human,
-            EventType::MouseMove { x: 100, y: 200 },
-            Priority::P1_Human,
-            42,
-        );
+        let ev = InputEvent {
+            source: EventSource::Human,
+            event_type: EventType::MouseMove { x: 100, y: 200 },
+            priority: Priority::P1_Human,
+            payload: cv_shared::types::EventPayload::empty(),
+            timestamp: 0,
+            sequence: 42,
+        };
         assert!(matches!(ev.source, EventSource::Human));
         assert!(matches!(ev.event_type, EventType::MouseMove { x: 100, y: 200 }));
         assert!(matches!(ev.priority, Priority::P1_Human));
         assert_eq!(ev.sequence, 42);
-        assert!(ev.timestamp > 0);
     }
 }

@@ -6,6 +6,7 @@
 
 use std::fmt;
 
+use futures::{SinkExt, StreamExt};
 use serde::{Deserialize, Serialize};
 use tokio::net::TcpStream;
 use tokio_tungstenite::{
@@ -314,8 +315,8 @@ mod tests {
         let json_str = msg.to_json().expect("serialize");
         let value: serde_json::Value = serde_json::from_str(&json_str).expect("parse as value");
         assert_eq!(value["type"], "register");
-        assert_eq!(value["peerId"], "peer-xyz");
-        assert!(value["publicKey"].is_array());
+        assert_eq!(value["peer_id"], "peer-xyz");
+        assert!(value["public_key"].is_array());
     }
 
     #[test]

@@ -212,7 +212,7 @@ mod tests {
 
     #[test]
     fn deserialize_initialize_request() {
-        let json = r#"{"method":"initialize","params":{"protocolVersion":"2024-11-05"}}"#;
+        let json = r#"{"method":"initialize","params":{"protocol_version":"2024-11-05"}}"#;
         let req: McpRequest = serde_json::from_str(json).expect("deserialize");
         assert_eq!(
             req,

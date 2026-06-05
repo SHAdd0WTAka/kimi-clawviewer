@@ -6,7 +6,7 @@
 //!
 //! # Architecture
 //!
-//! ```
+//! ```text
 //! AI Agent (Client)     cv-mcp (Server)
 //!      |                        |
 //!      |-- initialize --------->|  server.rs
@@ -130,12 +130,13 @@ mod tests {
             responses.len()
         );
 
-        // Response 1: initialize - should contain server info
+        // Response 1: initialize - should contain server info (text response)
         let resp1 = responses[0].as_object().expect("response 1 should be object");
-        assert!(resp1.contains_key("content"));
+        assert!(resp1.contains_key("result"));
 
         // Response 2: tools/list - should contain 6 tools
-        let resp2_text = responses[1]["content"][0]["text"]
+        let resp2_result = responses[1]["result"].clone();
+        let resp2_text = resp2_result["content"][0]["text"]
             .as_str()
             .unwrap_or("[]");
         let tool_defs: Vec<types::ToolDefinition> =
@@ -143,13 +144,15 @@ mod tests {
         assert_eq!(tool_defs.len(), 6);
 
         // Response 3: screenshot call
-        let resp3_text = responses[2]["content"][0]["text"]
+        let resp3_result = responses[2]["result"].clone();
+        let resp3_text = resp3_result["content"][0]["text"]
             .as_str()
             .unwrap_or("");
         assert!(resp3_text.contains("Screenshot"), "Response 3 should contain screenshot result");
 
         // Response 4: mouse_click call
-        let resp4_text = responses[3]["content"][0]["text"]
+        let resp4_result = responses[3]["result"].clone();
+        let resp4_text = resp4_result["content"][0]["text"]
             .as_str()
             .unwrap_or("");
         assert!(
@@ -159,7 +162,8 @@ mod tests {
         );
 
         // Response 5: keyboard_type call
-        let resp5_text = responses[4]["content"][0]["text"]
+        let resp5_result = responses[4]["result"].clone();
+        let resp5_text = resp5_result["content"][0]["text"]
             .as_str()
             .unwrap_or("");
         assert!(

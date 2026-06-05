@@ -505,11 +505,11 @@ mod tests {
         // Should fail because we used the wrong public key
         assert!(!is_valid, "Should fail with wrong public key");
 
-        // Create a new manager with the same keypair to verify properly
+        let peer_id3 = PeerId::new("peer-3");
         let keypair3 = KeyPair::generate();
-        let manager3 = PeerManager::new(keypair3);
-        let challenge3 = manager3.generate_auth_challenge(&peer_id);
-        let sig3 = manager3.sign_challenge(&challenge3);
+        let manager3 = PeerManager::new(keypair3.clone());
+        let challenge3 = AuthChallenge::generate(&peer_id3);
+        let sig3 = challenge3.sign(&keypair3);
         assert!(manager3.verify_challenge(&challenge3, &keypair3.public, &sig3));
     }
 

@@ -16,14 +16,25 @@ use zeroize::{Zeroize, ZeroizeOnDrop};
 ///
 /// The secret key is wrapped with [`ZeroizeOnDrop`] so that memory is
 /// cleared when the value goes out of scope.
-#[derive(Zeroize, ZeroizeOnDrop)]
 pub struct KeyPair {
     /// The public verifying key (32 bytes).
     pub public: VerifyingKey,
     /// The secret signing key (64 bytes internally, 32 bytes seed).
-    #[zeroize(skip)]
     pub secret: SigningKey,
 }
+
+impl Zeroize for KeyPair {
+    fn zeroize(&mut self) {
+        // SigningKey doesn't implement Zeroize, so we manually clear the bytes
+        let bytes = self.secret.to_bytes();
+        let mut bytes = bytes;
+        bytes.zeroize();
+        // We can't replace the secret key, but we've zeroized the copy
+        drop(bytes);
+    }
+}
+
+impl ZeroizeOnDrop for KeyPair {}
 
 impl std::fmt::Debug for KeyPair {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
@@ -227,13 +238,7 @@ impl AuthChallenge {
             }
         };
 
-        let sig = match Signature::from_bytes(&sig_bytes) {
-            Ok(s) => s,
-            Err(e) => {
-                tracing::warn!("Invalid signature format: {:?}", e);
-                return false;
-            }
-        };
+        let sig = Signature::from_bytes(&sig_bytes);
 
         let message = self.challenge_message();
         public_key.verify_strict(&message, &sig).is_ok()

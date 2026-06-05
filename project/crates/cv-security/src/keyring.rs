@@ -125,7 +125,7 @@ impl KeyringStorage {
     #[instrument(skip(self))]
     pub async fn delete_api_key(&self, provider: Provider) -> KeyringResult<()> {
         let entry = self.get_entry(provider)?;
-        match entry.delete_password() {
+        match entry.delete_credential() {
             Ok(()) => {
                 info!("Deleted API key for {}", provider);
                 Ok(())
@@ -152,9 +152,8 @@ impl KeyringStorage {
 
     /// Build a [`keyring::Entry`] for the given provider.
     fn get_entry(&self, provider: Provider) -> KeyringResult<Entry> {
-        // keyring v3.x Entry::new is infallible, but we keep error handling
-        // for forward compatibility.
-        Ok(Entry::new(SERVICE_NAME, provider.as_str()))
+        Entry::new(SERVICE_NAME, provider.as_str())
+            .map_err(KeyringError::Platform)
     }
 }
 

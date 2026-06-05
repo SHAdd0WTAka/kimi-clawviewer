@@ -215,12 +215,6 @@ impl Priority {
     }
 }
 
-impl PartialOrd for Priority {
-    fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
-        Some(self.cmp(other))
-    }
-}
-
 impl Ord for Priority {
     /// Reversed ordering so that P0 (highest) sorts first.
     ///
@@ -228,6 +222,12 @@ impl Ord for Priority {
     /// lower numeric values (higher priority) come out first.
     fn cmp(&self, other: &Self) -> std::cmp::Ordering {
         other.as_u8().cmp(&self.as_u8())
+    }
+}
+
+impl PartialOrd for Priority {
+    fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
+        Some(self.cmp(other))
     }
 }
 
@@ -295,6 +295,42 @@ impl Default for EventPayload {
 }
 
 // ---------------------------------------------------------------------------
+// Geometry
+// ---------------------------------------------------------------------------
+
+/// A rectangle defined by left, top, width, height.
+///
+/// Used for dirty region tracking in screen capture.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
+pub struct Rect {
+    /// Left coordinate (inclusive).
+    pub left: u32,
+    /// Top coordinate (inclusive).
+    pub top: u32,
+    /// Width in pixels.
+    pub width: u32,
+    /// Height in pixels.
+    pub height: u32,
+}
+
+impl Rect {
+    /// Create a new rectangle.
+    pub fn new(left: u32, top: u32, width: u32, height: u32) -> Self {
+        Self { left, top, width, height }
+    }
+
+    /// Right coordinate (exclusive).
+    pub fn right(&self) -> u32 {
+        self.left + self.width
+    }
+
+    /// Bottom coordinate (exclusive).
+    pub fn bottom(&self) -> u32 {
+        self.top + self.height
+    }
+}
+
+// ---------------------------------------------------------------------------
 // Send + Sync assertions
 // ---------------------------------------------------------------------------
 
@@ -313,4 +349,5 @@ fn _assert_send_sync() {
     assert_send_sync::<Priority>();
     assert_send_sync::<InputEvent>();
     assert_send_sync::<EventPayload>();
+    assert_send_sync::<Rect>();
 }

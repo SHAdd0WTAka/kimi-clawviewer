@@ -76,10 +76,10 @@ impl Frame {
     }
 
     /// Return the total area covered by dirty regions in pixels.
-    pub fn dirty_area_pixels(&self) -> i32 {
+    pub fn dirty_area_pixels(&self) -> u32 {
         self.dirty_regions
             .iter()
-            .map(|r| r.width() * r.height())
+            .map(|r| r.width * r.height)
             .sum()
     }
 
@@ -129,12 +129,12 @@ impl Frame {
 mod tests {
     use super::*;
 
-    fn test_rect(l: i32, t: i32, r: i32, b: i32) -> cv_shared::Rect {
+    fn test_rect(l: i32, t: i32, w: i32, h: i32) -> cv_shared::Rect {
         cv_shared::Rect {
-            left: l,
-            top: t,
-            right: r,
-            bottom: b,
+            left: l as u32,
+            top: t as u32,
+            width: w as u32,
+            height: h as u32,
         }
     }
 
@@ -153,15 +153,7 @@ mod tests {
 
     #[test]
     fn frame_with_dirty_regions() {
-        let dirty = vec![test_rect(0, 0, 100, 100), test_rect(200, 200, 300, 300)]
-            .into_iter()
-            .map(|r| cv_shared::Rect {
-                left: r.left,
-                top: r.top,
-                right: r.right,
-                bottom: r.bottom,
-            })
-            .collect();
+        let dirty = vec![test_rect(0, 0, 100, 100), test_rect(200, 200, 100, 100)];
         let data = vec![0u8; 1920 * 1080 * 4];
         let frame = Frame::new(data, 1920, 1080, 1920 * 4, dirty);
         assert!(frame.has_dirty_regions());

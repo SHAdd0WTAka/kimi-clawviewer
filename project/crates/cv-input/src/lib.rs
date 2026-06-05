@@ -24,12 +24,6 @@ pub mod types;
 #[cfg(target_os = "windows")]
 pub mod windows;
 
-#[cfg(target_os = "linux")]
-pub mod linux;
-
-#[cfg(target_os = "macos")]
-pub mod macos;
-
 // ---------------------------------------------------------------------------
 // Re-exports for convenience
 // ---------------------------------------------------------------------------
@@ -169,15 +163,17 @@ mod tests {
     fn reexports_are_available() {
         // Verify that InputEvent, MouseButton, Priority and PriorityInputQueue
         // can be used directly from the crate root.
-        let _ev = InputEvent::new(
-            EventSource::Human,
-            EventType::MouseClick {
+        let _ev = InputEvent {
+            source: EventSource::Human,
+            event_type: EventType::MouseClick {
                 button: MouseButton::Left,
                 down: true,
             },
-            Priority::P1_Human,
-            0,
-        );
+            priority: Priority::P1_Human,
+            payload: cv_shared::types::EventPayload::empty(),
+            timestamp: 0,
+            sequence: 0,
+        };
         let _queue = PriorityInputQueue::new();
     }
 
