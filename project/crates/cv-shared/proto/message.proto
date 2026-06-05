@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package clawviewer.message;
+
+message DataMessage {
+  oneof union {
+    InputEvent input_event = 1;
+    ChatMessage chat_message = 2;
+    VideoFrame video_frame = 3;
+    SystemMessage system_message = 4;
+  }
+}
+
+message InputEvent {
+  string source = 1;
+  int32 priority = 2;
+  int32 event_type = 3;
+  bytes payload = 4;
+  uint64 timestamp = 5;
+  uint64 sequence = 6;
+}
+
+message ChatMessage {
+  string msg_type = 1;
+  string sender = 2;
+  string content = 3;
+  uint64 timestamp = 4;
+}
+
+message VideoFrame {
+  bytes data = 1;
+  uint32 width = 2;
+  uint32 height = 3;
+  uint32 pitch = 4;
+  uint64 timestamp = 5;
+  repeated Rect dirty_regions = 6;
+}
+
+message Rect {
+  int32 left = 1;
+  int32 top = 2;
+  int32 right = 3;
+  int32 bottom = 4;
+}
+
+message SystemMessage {
+  string msg_type = 1;
+  string content = 2;
+}
