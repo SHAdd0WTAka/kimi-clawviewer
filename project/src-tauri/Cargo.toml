@@ -1,0 +1,34 @@
+[package]
+name = "clawviewer-tauri"
+version = "0.1.0"
+description = "ClawViewer - KI-gestuetzte Remote-Desktop-App"
+edition = "2021"
+rust-version = "1.80"
+
+[lib]
+name = "clawviewer_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[[bin]]
+name = "clawviewer"
+path = "src/main.rs"
+
+[dependencies]
+tauri = { version = "2.4", features = [] }
+tauri-plugin-shell = "2.2"
+tauri-plugin-global-shortcut = "2.0"
+tokio = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+anyhow = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+cv-shared = { path = "../crates/cv-shared" }
+cv-security = { path = "../crates/cv-security" }
+cv-capture = { path = "../crates/cv-capture" }
+cv-input = { path = "../crates/cv-input" }
+cv-network = { path = "../crates/cv-network" }
+cv-mcp = { path = "../crates/cv-mcp" }
+
+[build-dependencies]
+tauri-build = "2.2"
