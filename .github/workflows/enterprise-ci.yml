@@ -33,9 +33,11 @@ jobs:
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
       
       - name: Check Formatting
+        working-directory: ./project
         run: cargo fmt --all -- --check
       
       - name: Run Clippy
+        working-directory: ./project
         run: cargo clippy --all-targets --all-features -- -D warnings
 
   test:
@@ -66,10 +68,12 @@ jobs:
           sudo apt-get install -y libwebkit2gtk-4.0-dev libappindicator3-dev librsvg2-dev patchelf
       
       - name: Run Tests
+        working-directory: ./project
         run: cargo test --all --all-features --verbose
       
       - name: Generate Coverage
         if: matrix.os == 'ubuntu-latest'
+        working-directory: ./project
         run: |
           cargo install cargo-tarpaulin
           cargo tarpaulin --out Xml --all --all-features
@@ -78,7 +82,7 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
         uses: codecov/codecov-action@v4
         with:
-          files: ./cobertura.xml
+          files: ./project/cobertura.xml
 
   security-audit:
     name: Security Audit
@@ -93,9 +97,11 @@ jobs:
         run: cargo install cargo-audit
       
       - name: Run Security Audit
+        working-directory: ./project
         run: cargo audit
       
       - name: Run cargo-deny
+        working-directory: ./project
         run: |
           cargo install cargo-deny
           cargo deny check
