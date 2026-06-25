@@ -88,7 +88,7 @@ impl KeyPair {
     /// ```
     pub fn generate() -> Self {
         let mut csprng = OsRng;
-        let secret = SigningKey::generate(&mut csprng);
+        let secret = SigningKey::from_bytes(&rand::random());
         let public = secret.verifying_key();
         debug!("Generated new Ed25519 key pair");
         Self { public, secret }

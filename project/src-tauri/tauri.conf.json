@@ -38,19 +38,7 @@
         "form-action": "'self'"
       },
       "dangerousDisableAssetCspModification": false,
-      "capabilities": [
-        {
-          "identifier": "default",
-          "windows": ["main"],
-          "permissions": [
-            "core:default",
-            "shell:allow-open",
-            "global-shortcut:allow-is-registered",
-            "global-shortcut:allow-register",
-            "global-shortcut:allow-unregister"
-          ]
-        }
-      ]
+      "capabilities": []
     }
   },
   "bundle": {
