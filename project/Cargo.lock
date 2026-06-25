@@ -1565,7 +1565,7 @@ dependencies = [
  "libc",
  "option-ext",
  "redox_users",
- "windows-sys 0.61.2",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
@@ -1844,7 +1844,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "39cab71617ae0d63f51a36d69f866391735b51691dbda63cf6f96d042b63efeb"
 dependencies = [
  "libc",
- "windows-sys 0.61.2",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
@@ -3318,7 +3318,7 @@ dependencies = [
  "png 0.18.1",
  "serde",
  "thiserror 2.0.18",
- "windows-sys 0.61.2",
+ "windows-sys 0.60.2",
 ]
 
 [[package]]
@@ -3420,7 +3420,7 @@ version = "0.50.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7957b9740744892f114936ab4a57b3f487491bbeafaf8083688b16841a4240e5"
 dependencies = [
- "windows-sys 0.61.2",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
@@ -3777,7 +3777,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7d8fae84b431384b68627d0f9b3b1245fcf9f46f6c0e3dc902e9dce64edd1967"
 dependencies = [
  "libc",
- "windows-sys 0.61.2",
+ "windows-sys 0.45.0",
 ]
 
 [[package]]
@@ -4277,7 +4277,7 @@ version = "0.13.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "be769465445e8c1474e9c5dac2018218498557af32d9ed057325ec9a41ae81bf"
 dependencies = [
- "heck 0.5.0",
+ "heck 0.4.1",
  "itertools",
  "log",
  "multimap",
@@ -4721,8 +4721,8 @@ dependencies = [
 
 [[package]]
 name = "rtc"
-version = "0.20.0-alpha.1"
-source = "git+https://github.com/webrtc-rs/webrtc#79ad707254d1d451686d40b64af06dab41bdba75"
+version = "0.20.0-alpha.3"
+source = "git+https://github.com/webrtc-rs/webrtc#988c952016b1a52e6673f456c73b5c697b350dcf"
 dependencies = [
  "bytes",
  "hex",
@@ -4755,8 +4755,8 @@ dependencies = [
 
 [[package]]
 name = "rtc-datachannel"
-version = "0.20.0-alpha.1"
-source = "git+https://github.com/webrtc-rs/webrtc#79ad707254d1d451686d40b64af06dab41bdba75"
+version = "0.20.0-alpha.3"
+source = "git+https://github.com/webrtc-rs/webrtc#988c952016b1a52e6673f456c73b5c697b350dcf"
 dependencies = [
  "bytes",
  "log",
@@ -4767,8 +4767,8 @@ dependencies = [
 
 [[package]]
 name = "rtc-dtls"
-version = "0.20.0-alpha.1"
-source = "git+https://github.com/webrtc-rs/webrtc#79ad707254d1d451686d40b64af06dab41bdba75"
+version = "0.20.0-alpha.3"
+source = "git+https://github.com/webrtc-rs/webrtc#988c952016b1a52e6673f456c73b5c697b350dcf"
 dependencies = [
  "aes",
  "aes-gcm",
@@ -4800,8 +4800,8 @@ dependencies = [
 
 [[package]]
 name = "rtc-ice"
-version = "0.20.0-alpha.1"
-source = "git+https://github.com/webrtc-rs/webrtc#79ad707254d1d451686d40b64af06dab41bdba75"
+version = "0.20.0-alpha.3"
+source = "git+https://github.com/webrtc-rs/webrtc#988c952016b1a52e6673f456c73b5c697b350dcf"
 dependencies = [
  "bytes",
  "crc",
@@ -4818,8 +4818,8 @@ dependencies = [
 
 [[package]]
 name = "rtc-interceptor"
-version = "0.20.0-alpha.1"
-source = "git+https://github.com/webrtc-rs/webrtc#79ad707254d1d451686d40b64af06dab41bdba75"
+version = "0.20.0-alpha.3"
+source = "git+https://github.com/webrtc-rs/webrtc#988c952016b1a52e6673f456c73b5c697b350dcf"
 dependencies = [
  "log",
  "rand 0.9.4",
@@ -4832,8 +4832,8 @@ dependencies = [
 
 [[package]]
 name = "rtc-interceptor-derive"
-version = "0.20.0-alpha.1"
-source = "git+https://github.com/webrtc-rs/webrtc#79ad707254d1d451686d40b64af06dab41bdba75"
+version = "0.20.0-alpha.3"
+source = "git+https://github.com/webrtc-rs/webrtc#988c952016b1a52e6673f456c73b5c697b350dcf"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -4842,8 +4842,8 @@ dependencies = [
 
 [[package]]
 name = "rtc-mdns"
-version = "0.20.0-alpha.1"
-source = "git+https://github.com/webrtc-rs/webrtc#79ad707254d1d451686d40b64af06dab41bdba75"
+version = "0.20.0-alpha.3"
+source = "git+https://github.com/webrtc-rs/webrtc#988c952016b1a52e6673f456c73b5c697b350dcf"
 dependencies = [
  "bytes",
  "log",
@@ -4854,8 +4854,8 @@ dependencies = [
 
 [[package]]
 name = "rtc-media"
-version = "0.20.0-alpha.1"
-source = "git+https://github.com/webrtc-rs/webrtc#79ad707254d1d451686d40b64af06dab41bdba75"
+version = "0.20.0-alpha.3"
+source = "git+https://github.com/webrtc-rs/webrtc#988c952016b1a52e6673f456c73b5c697b350dcf"
 dependencies = [
  "byteorder",
  "bytes",
@@ -4867,8 +4867,8 @@ dependencies = [
 
 [[package]]
 name = "rtc-rtcp"
-version = "0.20.0-alpha.1"
-source = "git+https://github.com/webrtc-rs/webrtc#79ad707254d1d451686d40b64af06dab41bdba75"
+version = "0.20.0-alpha.3"
+source = "git+https://github.com/webrtc-rs/webrtc#988c952016b1a52e6673f456c73b5c697b350dcf"
 dependencies = [
  "bytes",
  "rtc-shared",
@@ -4876,8 +4876,8 @@ dependencies = [
 
 [[package]]
 name = "rtc-rtp"
-version = "0.20.0-alpha.1"
-source = "git+https://github.com/webrtc-rs/webrtc#79ad707254d1d451686d40b64af06dab41bdba75"
+version = "0.20.0-alpha.3"
+source = "git+https://github.com/webrtc-rs/webrtc#988c952016b1a52e6673f456c73b5c697b350dcf"
 dependencies = [
  "bytes",
  "memchr",
@@ -4888,8 +4888,8 @@ dependencies = [
 
 [[package]]
 name = "rtc-sctp"
-version = "0.20.0-alpha.1"
-source = "git+https://github.com/webrtc-rs/webrtc#79ad707254d1d451686d40b64af06dab41bdba75"
+version = "0.20.0-alpha.3"
+source = "git+https://github.com/webrtc-rs/webrtc#988c952016b1a52e6673f456c73b5c697b350dcf"
 dependencies = [
  "bytes",
  "crc",
@@ -4902,8 +4902,8 @@ dependencies = [
 
 [[package]]
 name = "rtc-sdp"
-version = "0.20.0-alpha.1"
-source = "git+https://github.com/webrtc-rs/webrtc#79ad707254d1d451686d40b64af06dab41bdba75"
+version = "0.20.0-alpha.3"
+source = "git+https://github.com/webrtc-rs/webrtc#988c952016b1a52e6673f456c73b5c697b350dcf"
 dependencies = [
  "rand 0.9.4",
  "rtc-shared",
@@ -4912,8 +4912,8 @@ dependencies = [
 
 [[package]]
 name = "rtc-shared"
-version = "0.20.0-alpha.1"
-source = "git+https://github.com/webrtc-rs/webrtc#79ad707254d1d451686d40b64af06dab41bdba75"
+version = "0.20.0-alpha.3"
+source = "git+https://github.com/webrtc-rs/webrtc#988c952016b1a52e6673f456c73b5c697b350dcf"
 dependencies = [
  "aes",
  "aes-gcm",
@@ -4933,8 +4933,8 @@ dependencies = [
 
 [[package]]
 name = "rtc-srtp"
-version = "0.20.0-alpha.1"
-source = "git+https://github.com/webrtc-rs/webrtc#79ad707254d1d451686d40b64af06dab41bdba75"
+version = "0.20.0-alpha.3"
+source = "git+https://github.com/webrtc-rs/webrtc#988c952016b1a52e6673f456c73b5c697b350dcf"
 dependencies = [
  "aead",
  "aes",
@@ -4952,8 +4952,8 @@ dependencies = [
 
 [[package]]
 name = "rtc-stun"
-version = "0.20.0-alpha.1"
-source = "git+https://github.com/webrtc-rs/webrtc#79ad707254d1d451686d40b64af06dab41bdba75"
+version = "0.20.0-alpha.3"
+source = "git+https://github.com/webrtc-rs/webrtc#988c952016b1a52e6673f456c73b5c697b350dcf"
 dependencies = [
  "base64 0.22.1",
  "bytes",
@@ -4970,8 +4970,8 @@ dependencies = [
 
 [[package]]
 name = "rtc-turn"
-version = "0.20.0-alpha.1"
-source = "git+https://github.com/webrtc-rs/webrtc#79ad707254d1d451686d40b64af06dab41bdba75"
+version = "0.20.0-alpha.3"
+source = "git+https://github.com/webrtc-rs/webrtc#988c952016b1a52e6673f456c73b5c697b350dcf"
 dependencies = [
  "bytes",
  "log",
@@ -5041,7 +5041,7 @@ dependencies = [
  "errno",
  "libc",
  "linux-raw-sys",
- "windows-sys 0.61.2",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
@@ -5097,7 +5097,7 @@ dependencies = [
  "security-framework",
  "security-framework-sys",
  "webpki-root-certs",
- "windows-sys 0.61.2",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
@@ -5621,7 +5621,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "52d1cfed4120b4d927bf7c0f86d2087a4a7d6027c906d9f9d525a80573b9be51"
 dependencies = [
  "libc",
- "windows-sys 0.61.2",
+ "windows-sys 0.60.2",
 ]
 
 [[package]]
@@ -6235,7 +6235,7 @@ dependencies = [
  "getrandom 0.4.2",
  "once_cell",
  "rustix",
- "windows-sys 0.61.2",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
@@ -6724,7 +6724,7 @@ dependencies = [
  "png 0.18.1",
  "serde",
  "thiserror 2.0.18",
- "windows-sys 0.61.2",
+ "windows-sys 0.60.2",
 ]
 
 [[package]]
@@ -6779,7 +6779,7 @@ checksum = "f2f6fb2847f6742cd76af783a2a2c49e9375d0a111c7bef6f71cd9e738c72d6e"
 dependencies = [
  "memoffset 0.9.1",
  "tempfile",
- "windows-sys 0.61.2",
+ "windows-sys 0.60.2",
 ]
 
 [[package]]
@@ -7202,8 +7202,8 @@ dependencies = [
 
 [[package]]
 name = "webrtc"
-version = "0.20.0-alpha.1"
-source = "git+https://github.com/webrtc-rs/webrtc#79ad707254d1d451686d40b64af06dab41bdba75"
+version = "0.20.0-alpha.3"
+source = "git+https://github.com/webrtc-rs/webrtc#988c952016b1a52e6673f456c73b5c697b350dcf"
 dependencies = [
  "async-trait",
  "bytes",
@@ -7271,7 +7271,7 @@ version = "0.1.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c2a7b1c03c876122aa43f3020e6c3c3ee5c05081c9a00739faf7503aeba10d22"
 dependencies = [
- "windows-sys 0.61.2",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
