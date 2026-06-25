@@ -1,0 +1,10 @@
+{
+  "name": "ClawViewer",
+  "shortcuts": [
+    {"name": "Build", "command": "make build"},
+    {"name": "Test", "command": "make test"},
+    {"name": "Lint", "command": "make lint"},
+    {"name": "Audit", "command": "make audit"},
+    {"name": "Dev", "command": "make dev"}
+  ]
+}
