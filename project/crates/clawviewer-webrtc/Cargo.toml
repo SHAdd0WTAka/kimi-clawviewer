@@ -1,0 +1,15 @@
+[package]
+name = "clawviewer-webrtc"
+version = "0.1.0"
+edition = "2021"
+description = "WebRTC peer connection handling"
+
+[dependencies]
+tokio = { version = "1.36", features = ["full"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tracing = "0.1"
+thiserror = "1.0"
+
+[dev-dependencies]
+tokio-test = "0.4"

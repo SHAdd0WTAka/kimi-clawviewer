@@ -1,30 +1,79 @@
-[workspace]
-members = ["crates/*", "src-tauri"]
-resolver = "2"
-
-[workspace.package]
+[package]
+name = "clawviewer"
 version = "0.1.0"
 edition = "2021"
-authors = ["ClawViewer Team"]
-license = "GPL-3.0"
-repository = "https://github.com/clawviewer/clawviewer"
+authors = ["ClawViewer Team <team@clawviewer.dev>"]
+license = "MIT"
+repository = "https://github.com/SHAdd0WTAka/kimi-clawviewer"
+keywords = ["screen-capture", "remote-desktop", "webrtc", "enterprise"]
+categories = ["multimedia", "network-programming"]
 
-[workspace.dependencies]
-tokio = { version = "1.44", features = ["full"] }
+[dependencies]
+# Core
+tokio = { version = "1.36", features = ["full", "rt-multi-thread"] }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 thiserror = "1.0"
 anyhow = "1.0"
-prost = "0.13"
-bytes = "1.7"
 tracing = "0.1"
-tracing-subscriber = "0.3"
-chrono = "0.4"
-rand = "0.8"
-zeroize = { version = "1.8", features = ["derive"] }
-ed25519-dalek = { version = "2.1", features = ["rand_core"] }
-x25519-dalek = "2.0"
-webrtc = "0.12"
-tokio-tungstenite = { version = "0.26", features = ["rustls-tls-webpki-roots"] }
-async-trait = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json", "fmt"] }
+
+# Config & Environment
+config = "0.14"
+dotenvy = "0.15"
+once_cell = "1.19"
+
+# Security
+argon2 = "0.5"
+ring = "0.17"
+jsonwebtoken = "9.2"
+
+# Async Runtime
 futures = "0.3"
+async-trait = "0.1"
+parking_lot = "0.12"
+
+# Logging & Metrics
+opentelemetry = "0.22"
+opentelemetry-jaeger = "0.21"
+prometheus = "0.13"
+
+# Error Handling & Resilience
+tower = { version = "0.4", features = ["retry", "timeout", "limit"] }
+backoff = { version = "0.4", features = ["tokio"] }
+
+# Internal Crates
+clawviewer_lib = { path = "crates/clawviewer-lib" }
+clawviewer_security = { path = "crates/clawviewer-security" }
+clawviewer_network = { path = "crates/clawviewer-network" }
+clawviewer_capture = { path = "crates/clawviewer-capture" }
+clawviewer_webrtc = { path = "crates/clawviewer-webrtc" }
+clawviewer_ui = { path = "crates/clawviewer-ui" }
+clawviewer_monitoring = { path = "crates/clawviewer-monitoring" }
+clawviewer_config = { path = "crates/clawviewer-config" }
+
+[workspace]
+members = [
+    "crates/*",
+    "src-tauri",
+]
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
+
+[profile.dev]
+opt-level = 0
+debug = true
+
+[features]
+default = ["full"]
+full = ["capture", "webrtc", "ui", "monitoring"]
+capture = []
+webrtc = []
+ui = []
+monitoring = []
+headless = ["capture", "webrtc", "monitoring"]

@@ -1,35 +1,37 @@
 [package]
 name = "clawviewer-tauri"
 version = "0.1.0"
-description = "ClawViewer - KI-gestuetzte Remote-Desktop-App"
+description = "ClawViewer Enterprise - Screen Capture & Remote Desktop"
+authors = ["ClawViewer Team <team@clawviewer.dev>"]
+license = "MIT"
+repository = "https://github.com/SHAdd0WTAka/kimi-clawviewer"
 edition = "2021"
-rust-version = "1.80"
-
-[lib]
-name = "clawviewer_lib"
-crate-type = ["staticlib", "cdylib", "rlib"]
-
-[[bin]]
-name = "clawviewer"
-path = "src/main.rs"
-
-[dependencies]
-tauri = { version = "2.4", features = [] }
-tauri-plugin-shell = "2.2"
-tauri-plugin-global-shortcut = "2.0"
-tokio = { workspace = true }
-serde = { workspace = true }
-serde_json = { workspace = true }
-anyhow = { workspace = true }
-tracing = { workspace = true }
-tracing-subscriber = { workspace = true }
-cv-shared = { path = "../crates/cv-shared" }
-cv-security = { path = "../crates/cv-security" }
-cv-capture = { path = "../crates/cv-capture" }
-cv-input = { path = "../crates/cv-input" }
-cv-network = { path = "../crates/cv-network" }
-cv-mcp = { path = "../crates/cv-mcp" }
-rand.workspace = true
+rust-version = "1.75"
 
 [build-dependencies]
-tauri-build = { version = "2.2", features = [] }
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = ["tray-icon", "image-png", "image-ico"] }
+tauri-plugin-shell = "2"
+tauri-plugin-global-shortcut = "2"
+tauri-plugin-notification = "2"
+tauri-plugin-log = "2"
+tauri-plugin-updater = "2"
+
+# Internal crates
+clawviewer_lib = { path = "../crates/clawviewer-lib" }
+clawviewer_config = { path = "../crates/clawviewer-config" }
+clawviewer_security = { path = "../crates/clawviewer-security" }
+clawviewer_monitoring = { path = "../crates/clawviewer-monitoring" }
+
+# Core dependencies
+tokio = { version = "1.36", features = ["full"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+
+[features]
+default = ["custom-protocol"]
+custom-protocol = ["tauri/custom-protocol"]
