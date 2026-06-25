@@ -1,14 +1,18 @@
-[package]
-name = "clawviewer"
+[workspace]
+resolver = "2"
+members = [
+    "crates/*",
+    "src-tauri",
+]
+
+[workspace.package]
 version = "0.1.0"
 edition = "2021"
 authors = ["ClawViewer Team <team@clawviewer.dev>"]
 license = "MIT"
 repository = "https://github.com/SHAdd0WTAka/kimi-clawviewer"
-keywords = ["screen-capture", "remote-desktop", "webrtc", "enterprise"]
-categories = ["multimedia", "network-programming"]
 
-[dependencies]
+[workspace.dependencies]
 # Core
 tokio = { version = "1.36", features = ["full", "rt-multi-thread"] }
 serde = { version = "1.0", features = ["derive"] }
@@ -35,8 +39,21 @@ parking_lot = "0.12"
 
 # Logging & Metrics
 opentelemetry = "0.22"
-opentelemetry-jaeger = "0.21"
 prometheus = "0.13"
+
+# Serialization / Protocol
+prost = "0.13"
+bytes = "1.5"
+chrono = { version = "0.4", features = ["serde"] }
+rand = "0.8"
+zeroize = "1.7"
+
+# Crypto
+ed25519-dalek = "2.1"
+x25519-dalek = "2.0"
+
+# Networking
+tokio-tungstenite = { version = "0.24", features = ["rustls-tls-webpki-roots"] }
 
 # Error Handling & Resilience
 tower = { version = "0.4", features = ["retry", "timeout", "limit"] }
@@ -52,12 +69,6 @@ clawviewer_ui = { path = "crates/clawviewer-ui" }
 clawviewer_monitoring = { path = "crates/clawviewer-monitoring" }
 clawviewer_config = { path = "crates/clawviewer-config" }
 
-[workspace]
-members = [
-    "crates/*",
-    "src-tauri",
-]
-
 [profile.release]
 opt-level = 3
 lto = true
@@ -68,12 +79,3 @@ strip = true
 [profile.dev]
 opt-level = 0
 debug = true
-
-[features]
-default = ["full"]
-full = ["capture", "webrtc", "ui", "monitoring"]
-capture = []
-webrtc = []
-ui = []
-monitoring = []
-headless = ["capture", "webrtc", "monitoring"]

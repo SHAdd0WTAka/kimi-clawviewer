@@ -1,5 +1,5 @@
 [package]
-name = "clawviewer-network"
+name = "clawviewer_network"
 version = "0.1.0"
 edition = "2021"
 description = "Network signaling and WebSocket management"

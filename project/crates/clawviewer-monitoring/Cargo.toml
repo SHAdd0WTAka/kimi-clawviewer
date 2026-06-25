@@ -1,5 +1,5 @@
 [package]
-name = "clawviewer-monitoring"
+name = "clawviewer_monitoring"
 version = "0.1.0"
 edition = "2021"
 

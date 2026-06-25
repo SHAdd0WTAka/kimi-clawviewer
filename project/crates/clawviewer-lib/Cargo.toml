@@ -1,5 +1,5 @@
 [package]
-name = "clawviewer-lib"
+name = "clawviewer_lib"
 version = "0.1.0"
 edition = "2021"
 description = "Shared utilities and common types"

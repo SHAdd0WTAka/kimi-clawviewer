@@ -1,5 +1,5 @@
 [package]
-name = "clawviewer-webrtc"
+name = "clawviewer_webrtc"
 version = "0.1.0"
 edition = "2021"
 description = "WebRTC peer connection handling"

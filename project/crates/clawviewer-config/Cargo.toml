@@ -1,5 +1,5 @@
 [package]
-name = "clawviewer-config"
+name = "clawviewer_config"
 version = "0.1.0"
 edition = "2021"
 
