@@ -30,7 +30,7 @@ once_cell = "1.19"
 # Security
 argon2 = "0.5"
 ring = "0.17"
-jsonwebtoken = "9.2"
+jsonwebtoken = "10.4"
 
 # Async Runtime
 futures = "0.3"
