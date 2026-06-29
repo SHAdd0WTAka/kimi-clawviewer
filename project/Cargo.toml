@@ -39,7 +39,7 @@ parking_lot = "0.12"
 
 # Logging & Metrics
 opentelemetry = "0.22"
-prometheus = "0.13"
+prometheus = "0.14"
 
 # Serialization / Protocol
 prost = "0.13"
