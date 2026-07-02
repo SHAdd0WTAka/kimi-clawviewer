@@ -26,7 +26,7 @@ checksum = "b169f7a6d4742236a0a00c541b845991d0ac43e546831af1249753ab4c3aa3a0"
 dependencies = [
  "cfg-if",
  "cipher",
- "cpufeatures",
+ "cpufeatures 0.2.17",
 ]
 
 [[package]]
@@ -156,7 +156,7 @@ checksum = "3c3610892ee6e0cbce8ae2700349fcf8f98adb0dbfbee85aec3c9179d29cc072"
 dependencies = [
  "base64ct",
  "blake2",
- "cpufeatures",
+ "cpufeatures 0.2.17",
  "password-hash",
 ]
 
@@ -721,9 +721,9 @@ checksum = "8f1fe948ff07f4bd06c30984e69f5b4899c516a3ef74f34df92a2df2ab535495"
 
 [[package]]
 name = "bytes"
-version = "1.11.1"
+version = "1.12.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1e748733b7cbc798e1434b6ac524f0c1ff2ab456fe201501e6497c8417a4fc33"
+checksum = "8ae3f5d315924270530207e2a68396c3cc547f6dca3fbdca317cfb1a51edb593"
 dependencies = [
  "serde",
 ]
@@ -873,7 +873,18 @@ checksum = "c3613f74bd2eac03dad61bd53dbe620703d4371614fe0bc3b9f04dd36fe4e818"
 dependencies = [
  "cfg-if",
  "cipher",
- "cpufeatures",
+ "cpufeatures 0.2.17",
+]
+
+[[package]]
+name = "chacha20"
+version = "0.10.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d524456ba66e72eb8b115ff89e01e497f8e6d11d78b70b1aa13c0fbd97540a81"
+dependencies = [
+ "cfg-if",
+ "cpufeatures 0.3.0",
+ "rand_core 0.10.1",
 ]
 
 [[package]]
@@ -883,7 +894,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "10cd79432192d1c0f4e1a0fef9527696cc039165d729fb41b3f4f4f354c2dc35"
 dependencies = [
  "aead",
- "chacha20",
+ "chacha20 0.9.1",
  "cipher",
  "poly1305",
  "zeroize",
@@ -1179,6 +1190,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "cpufeatures"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8b2a41393f66f16b0823bb79094d54ac5fbd34ab292ddafb9a0456ac9f87d201"
+dependencies = [
+ "libc",
+]
+
+[[package]]
 name = "crc"
 version = "3.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1301,7 +1321,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "97fb8b7c4503de7d6ae7b42ab72a5a59857b4c937ec27a3d4539dba95b5ab2be"
 dependencies = [
  "cfg-if",
- "cpufeatures",
+ "cpufeatures 0.2.17",
  "curve25519-dalek-derive",
  "digest",
  "fiat-crypto",
@@ -1576,7 +1596,7 @@ dependencies = [
  "libc",
  "option-ext",
  "redox_users",
- "windows-sys 0.61.2",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
@@ -1855,7 +1875,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "39cab71617ae0d63f51a36d69f866391735b51691dbda63cf6f96d042b63efeb"
 dependencies = [
  "libc",
- "windows-sys 0.61.2",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
@@ -2276,6 +2296,7 @@ dependencies = [
  "cfg-if",
  "libc",
  "r-efi 6.0.0",
+ "rand_core 0.10.1",
  "wasip2",
  "wasip3",
 ]
@@ -3192,9 +3213,9 @@ dependencies = [
 
 [[package]]
 name = "log"
-version = "0.4.32"
+version = "0.4.33"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "953f07c43838f8e6f9758cab68bf5bed85465e7587ebe0b823f1bcd81978ad3a"
+checksum = "0ceec5bc11778974d1bcb055b18002eba7f4b3518b6a0081b3af5f21666da9ad"
 dependencies = [
  "value-bag",
 ]
@@ -3340,7 +3361,7 @@ dependencies = [
  "png 0.18.1",
  "serde",
  "thiserror 2.0.18",
- "windows-sys 0.61.2",
+ "windows-sys 0.60.2",
 ]
 
 [[package]]
@@ -3442,7 +3463,7 @@ version = "0.50.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7957b9740744892f114936ab4a57b3f487491bbeafaf8083688b16841a4240e5"
 dependencies = [
- "windows-sys 0.61.2",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
@@ -3844,7 +3865,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7d8fae84b431384b68627d0f9b3b1245fcf9f46f6c0e3dc902e9dce64edd1967"
 dependencies = [
  "libc",
- "windows-sys 0.61.2",
+ "windows-sys 0.45.0",
 ]
 
 [[package]]
@@ -4185,7 +4206,7 @@ version = "0.8.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8159bd90725d2df49889a078b54f4f79e87f1f8a8444194cdca81d38f5393abf"
 dependencies = [
- "cpufeatures",
+ "cpufeatures 0.2.17",
  "opaque-debug",
  "universal-hash",
 ]
@@ -4197,7 +4218,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9d1fe60d06143b2430aa532c94cfe9e29783047f06c0d7fd359a9a51b729fa25"
 dependencies = [
  "cfg-if",
- "cpufeatures",
+ "cpufeatures 0.2.17",
  "opaque-debug",
  "universal-hash",
 ]
@@ -4344,7 +4365,7 @@ version = "0.13.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "be769465445e8c1474e9c5dac2018218498557af32d9ed057325ec9a41ae81bf"
 dependencies = [
- "heck 0.5.0",
+ "heck 0.4.1",
  "itertools",
  "log",
  "multimap",
@@ -4508,6 +4529,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "rand"
+version = "0.10.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c7f5fa3a058cd35567ef9bfa5e75732bee0f9e4c55fa90477bef2dfcdbc4be80"
+dependencies = [
+ "chacha20 0.10.1",
+ "getrandom 0.4.2",
+ "rand_core 0.10.1",
+]
+
+[[package]]
 name = "rand_chacha"
 version = "0.3.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -4544,6 +4576,12 @@ checksum = "76afc826de14238e6e8c374ddcc1fa19e374fd8dd986b0d2af0d02377261d83c"
 dependencies = [
  "getrandom 0.3.4",
 ]
+
+[[package]]
+name = "rand_core"
+version = "0.10.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "63b8176103e19a2643978565ca18b50549f6101881c443590420e4dc998a3c69"
 
 [[package]]
 name = "raw-window-handle"
@@ -4788,13 +4826,13 @@ dependencies = [
 
 [[package]]
 name = "rtc"
-version = "0.20.0-alpha.1"
-source = "git+https://github.com/webrtc-rs/webrtc#79ad707254d1d451686d40b64af06dab41bdba75"
+version = "0.20.0-rc.1"
+source = "git+https://github.com/webrtc-rs/webrtc#1acaa981f85d3db4997e5d4c9d469ff2748767ca"
 dependencies = [
  "bytes",
  "hex",
  "log",
- "rand 0.9.4",
+ "rand 0.10.2",
  "rcgen",
  "ring",
  "rtc-datachannel",
@@ -4822,8 +4860,8 @@ dependencies = [
 
 [[package]]
 name = "rtc-datachannel"
-version = "0.20.0-alpha.1"
-source = "git+https://github.com/webrtc-rs/webrtc#79ad707254d1d451686d40b64af06dab41bdba75"
+version = "0.20.0-rc.1"
+source = "git+https://github.com/webrtc-rs/webrtc#1acaa981f85d3db4997e5d4c9d469ff2748767ca"
 dependencies = [
  "bytes",
  "log",
@@ -4834,8 +4872,8 @@ dependencies = [
 
 [[package]]
 name = "rtc-dtls"
-version = "0.20.0-alpha.1"
-source = "git+https://github.com/webrtc-rs/webrtc#79ad707254d1d451686d40b64af06dab41bdba75"
+version = "0.20.0-rc.1"
+source = "git+https://github.com/webrtc-rs/webrtc#1acaa981f85d3db4997e5d4c9d469ff2748767ca"
 dependencies = [
  "aes",
  "aes-gcm",
@@ -4850,7 +4888,7 @@ dependencies = [
  "log",
  "p256",
  "p384",
- "rand 0.9.4",
+ "rand 0.10.2",
  "rand_core 0.6.4",
  "rcgen",
  "ring",
@@ -4867,13 +4905,13 @@ dependencies = [
 
 [[package]]
 name = "rtc-ice"
-version = "0.20.0-alpha.1"
-source = "git+https://github.com/webrtc-rs/webrtc#79ad707254d1d451686d40b64af06dab41bdba75"
+version = "0.20.0-rc.1"
+source = "git+https://github.com/webrtc-rs/webrtc#1acaa981f85d3db4997e5d4c9d469ff2748767ca"
 dependencies = [
  "bytes",
  "crc",
  "log",
- "rand 0.9.4",
+ "rand 0.10.2",
  "rtc-mdns",
  "rtc-shared",
  "rtc-stun",
@@ -4885,11 +4923,11 @@ dependencies = [
 
 [[package]]
 name = "rtc-interceptor"
-version = "0.20.0-alpha.1"
-source = "git+https://github.com/webrtc-rs/webrtc#79ad707254d1d451686d40b64af06dab41bdba75"
+version = "0.20.0-rc.1"
+source = "git+https://github.com/webrtc-rs/webrtc#1acaa981f85d3db4997e5d4c9d469ff2748767ca"
 dependencies = [
  "log",
- "rand 0.9.4",
+ "rand 0.10.2",
  "rtc-interceptor-derive",
  "rtc-rtcp",
  "rtc-rtp",
@@ -4899,8 +4937,8 @@ dependencies = [
 
 [[package]]
 name = "rtc-interceptor-derive"
-version = "0.20.0-alpha.1"
-source = "git+https://github.com/webrtc-rs/webrtc#79ad707254d1d451686d40b64af06dab41bdba75"
+version = "0.20.0-rc.1"
+source = "git+https://github.com/webrtc-rs/webrtc#1acaa981f85d3db4997e5d4c9d469ff2748767ca"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -4909,8 +4947,8 @@ dependencies = [
 
 [[package]]
 name = "rtc-mdns"
-version = "0.20.0-alpha.1"
-source = "git+https://github.com/webrtc-rs/webrtc#79ad707254d1d451686d40b64af06dab41bdba75"
+version = "0.20.0-rc.1"
+source = "git+https://github.com/webrtc-rs/webrtc#1acaa981f85d3db4997e5d4c9d469ff2748767ca"
 dependencies = [
  "bytes",
  "log",
@@ -4921,12 +4959,12 @@ dependencies = [
 
 [[package]]
 name = "rtc-media"
-version = "0.20.0-alpha.1"
-source = "git+https://github.com/webrtc-rs/webrtc#79ad707254d1d451686d40b64af06dab41bdba75"
+version = "0.20.0-rc.1"
+source = "git+https://github.com/webrtc-rs/webrtc#1acaa981f85d3db4997e5d4c9d469ff2748767ca"
 dependencies = [
  "byteorder",
  "bytes",
- "rand 0.9.4",
+ "rand 0.10.2",
  "rtc-rtp",
  "rtc-shared",
  "thiserror 2.0.18",
@@ -4934,8 +4972,8 @@ dependencies = [
 
 [[package]]
 name = "rtc-rtcp"
-version = "0.20.0-alpha.1"
-source = "git+https://github.com/webrtc-rs/webrtc#79ad707254d1d451686d40b64af06dab41bdba75"
+version = "0.20.0-rc.1"
+source = "git+https://github.com/webrtc-rs/webrtc#1acaa981f85d3db4997e5d4c9d469ff2748767ca"
 dependencies = [
  "bytes",
  "rtc-shared",
@@ -4943,25 +4981,25 @@ dependencies = [
 
 [[package]]
 name = "rtc-rtp"
-version = "0.20.0-alpha.1"
-source = "git+https://github.com/webrtc-rs/webrtc#79ad707254d1d451686d40b64af06dab41bdba75"
+version = "0.20.0-rc.1"
+source = "git+https://github.com/webrtc-rs/webrtc#1acaa981f85d3db4997e5d4c9d469ff2748767ca"
 dependencies = [
  "bytes",
  "memchr",
- "rand 0.9.4",
+ "rand 0.10.2",
  "rtc-shared",
  "serde",
 ]
 
 [[package]]
 name = "rtc-sctp"
-version = "0.20.0-alpha.1"
-source = "git+https://github.com/webrtc-rs/webrtc#79ad707254d1d451686d40b64af06dab41bdba75"
+version = "0.20.0-rc.1"
+source = "git+https://github.com/webrtc-rs/webrtc#1acaa981f85d3db4997e5d4c9d469ff2748767ca"
 dependencies = [
  "bytes",
  "crc",
  "log",
- "rand 0.9.4",
+ "rand 0.10.2",
  "rtc-shared",
  "slab",
  "thiserror 2.0.18",
@@ -4969,18 +5007,18 @@ dependencies = [
 
 [[package]]
 name = "rtc-sdp"
-version = "0.20.0-alpha.1"
-source = "git+https://github.com/webrtc-rs/webrtc#79ad707254d1d451686d40b64af06dab41bdba75"
+version = "0.20.0-rc.1"
+source = "git+https://github.com/webrtc-rs/webrtc#1acaa981f85d3db4997e5d4c9d469ff2748767ca"
 dependencies = [
- "rand 0.9.4",
+ "rand 0.10.2",
  "rtc-shared",
  "url",
 ]
 
 [[package]]
 name = "rtc-shared"
-version = "0.20.0-alpha.1"
-source = "git+https://github.com/webrtc-rs/webrtc#79ad707254d1d451686d40b64af06dab41bdba75"
+version = "0.20.0-rc.1"
+source = "git+https://github.com/webrtc-rs/webrtc#1acaa981f85d3db4997e5d4c9d469ff2748767ca"
 dependencies = [
  "aes",
  "aes-gcm",
@@ -4988,7 +5026,7 @@ dependencies = [
  "bytes",
  "nix",
  "p256",
- "rand 0.9.4",
+ "rand 0.10.2",
  "rcgen",
  "sec1",
  "serde",
@@ -5000,8 +5038,8 @@ dependencies = [
 
 [[package]]
 name = "rtc-srtp"
-version = "0.20.0-alpha.1"
-source = "git+https://github.com/webrtc-rs/webrtc#79ad707254d1d451686d40b64af06dab41bdba75"
+version = "0.20.0-rc.1"
+source = "git+https://github.com/webrtc-rs/webrtc#1acaa981f85d3db4997e5d4c9d469ff2748767ca"
 dependencies = [
  "aead",
  "aes",
@@ -5019,15 +5057,15 @@ dependencies = [
 
 [[package]]
 name = "rtc-stun"
-version = "0.20.0-alpha.1"
-source = "git+https://github.com/webrtc-rs/webrtc#79ad707254d1d451686d40b64af06dab41bdba75"
+version = "0.20.0-rc.1"
+source = "git+https://github.com/webrtc-rs/webrtc#1acaa981f85d3db4997e5d4c9d469ff2748767ca"
 dependencies = [
  "base64 0.22.1",
  "bytes",
  "crc",
  "lazy_static",
  "md-5",
- "rand 0.9.4",
+ "rand 0.10.2",
  "ring",
  "rtc-shared",
  "sansio",
@@ -5037,8 +5075,8 @@ dependencies = [
 
 [[package]]
 name = "rtc-turn"
-version = "0.20.0-alpha.1"
-source = "git+https://github.com/webrtc-rs/webrtc#79ad707254d1d451686d40b64af06dab41bdba75"
+version = "0.20.0-rc.1"
+source = "git+https://github.com/webrtc-rs/webrtc#1acaa981f85d3db4997e5d4c9d469ff2748767ca"
 dependencies = [
  "bytes",
  "log",
@@ -5108,7 +5146,7 @@ dependencies = [
  "errno",
  "libc",
  "linux-raw-sys",
- "windows-sys 0.61.2",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
@@ -5164,7 +5202,7 @@ dependencies = [
  "security-framework",
  "security-framework-sys",
  "webpki-root-certs",
- "windows-sys 0.61.2",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
@@ -5556,7 +5594,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e3bf829a2d51ab4a5ddf1352d8470c140cadc8301b2ae1789db023f01cedd6ba"
 dependencies = [
  "cfg-if",
- "cpufeatures",
+ "cpufeatures 0.2.17",
  "digest",
 ]
 
@@ -5567,7 +5605,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a7507d819769d01a365ab707794a4084392c824f54a7a6a7862f8c3d0892b283"
 dependencies = [
  "cfg-if",
- "cpufeatures",
+ "cpufeatures 0.2.17",
  "digest",
 ]
 
@@ -5707,7 +5745,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "52d1cfed4120b4d927bf7c0f86d2087a4a7d6027c906d9f9d525a80573b9be51"
 dependencies = [
  "libc",
- "windows-sys 0.61.2",
+ "windows-sys 0.60.2",
 ]
 
 [[package]]
@@ -6321,7 +6359,7 @@ dependencies = [
  "getrandom 0.4.2",
  "once_cell",
  "rustix",
- "windows-sys 0.61.2",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
@@ -6810,7 +6848,7 @@ dependencies = [
  "png 0.18.1",
  "serde",
  "thiserror 2.0.18",
- "windows-sys 0.61.2",
+ "windows-sys 0.60.2",
 ]
 
 [[package]]
@@ -6865,7 +6903,7 @@ checksum = "f2f6fb2847f6742cd76af783a2a2c49e9375d0a111c7bef6f71cd9e738c72d6e"
 dependencies = [
  "memoffset 0.9.1",
  "tempfile",
- "windows-sys 0.61.2",
+ "windows-sys 0.60.2",
 ]
 
 [[package]]
@@ -7288,8 +7326,8 @@ dependencies = [
 
 [[package]]
 name = "webrtc"
-version = "0.20.0-alpha.1"
-source = "git+https://github.com/webrtc-rs/webrtc#79ad707254d1d451686d40b64af06dab41bdba75"
+version = "0.20.0-rc.1"
+source = "git+https://github.com/webrtc-rs/webrtc#1acaa981f85d3db4997e5d4c9d469ff2748767ca"
 dependencies = [
  "async-trait",
  "bytes",
@@ -7357,7 +7395,7 @@ version = "0.1.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c2a7b1c03c876122aa43f3020e6c3c3ee5c05081c9a00739faf7503aeba10d22"
 dependencies = [
- "windows-sys 0.61.2",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
